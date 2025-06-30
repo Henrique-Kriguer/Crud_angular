@@ -7,13 +7,14 @@ import { CoursesComponent } from './courses/courses.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     CoursesRoutingModule,
     MatTableModule,
-    MatCardModule
-
+    MatCardModule,
+    CoursesComponent
   ]
 })
 export class CoursesModule { }
