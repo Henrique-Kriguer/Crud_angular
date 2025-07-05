@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppMaterialModule } from '../../shared/app-material/app-material.module';
 import { Course } from '../model/course';
+import { CoursesService } from '../services/courses.service';
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-courses',
@@ -10,14 +14,20 @@ import { Course } from '../model/course';
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss'
 })
-export class CoursesComponent {
-  courses: Course[] = [
-    {_id:'1',name:'Angular',category: 'front-end'},
-    {_id:'2',name:'Spring Boot',category: 'back-end'},
-    {_id:'3',name:'Java',category: 'back-end'},
-    {_id:'4',name:'JavaScript',category: 'front-end'},
-    {_id:'5',name:'TypeScript',category: 'front-end'}
+export class CoursesComponent implements OnInit {
 
-  ];
-  displayedColumns: string[] = ['name', 'category'];
+  courses: Course[] = [];
+  displayedColumns: string[] = ['_id','name', 'category'];
+
+  coursesService: CoursesService;
+
+  constructor( ) {
+    this.coursesService = new CoursesService();
+    this.courses = this.coursesService.list();
+  }
+
+  ngOnInit(): void {
+  // Initialization logic will go here (if needed)
+  }
+
 }
